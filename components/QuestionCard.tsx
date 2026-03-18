@@ -53,7 +53,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
       {/* Question */}
       <div className="flex-grow flex flex-col justify-start pt-6 md:pt-10">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 md:mb-12 leading-snug text-center drop-shadow-sm">
+        <h2 className="text-[27px] font-extrabold text-gray-800 mb-8 md:mb-12 leading-snug text-center drop-shadow-sm">
           {question.questionText}
         </h2>
 
@@ -70,7 +70,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 disabled={isAnySelected}
                 className={`
                   w-full text-center font-bold py-4 px-5 md:py-5 md:px-6 rounded-3xl shadow-md 
-                  text-lg md:text-xl touch-manipulation focus:outline-none 
+                  text-[20px] md:text-[22px] touch-manipulation focus:outline-none 
                   border-4 transition-all duration-200 transform
                   ${isSelected 
                     ? 'bg-orange-500 border-orange-600 text-white scale-[0.98]' 
