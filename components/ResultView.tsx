@@ -5,11 +5,14 @@ interface ResultViewProps {
   score: number;
   totalQuestions: number;
   onRestart: () => void;
+  bonusAnswer?: string;
 }
 
-export const ResultView: React.FC<ResultViewProps> = ({ score, totalQuestions, onRestart }) => {
+export const ResultView: React.FC<ResultViewProps> = ({ score, totalQuestions, onRestart, bonusAnswer }) => {
   const isWinner = score === totalQuestions;
   const mistakes = totalQuestions - score;
+
+  const isChick = bonusAnswer === "Nei, men skal gjøre det nå";
 
   useEffect(() => {
     if (isWinner) {
@@ -55,9 +58,9 @@ export const ResultView: React.FC<ResultViewProps> = ({ score, totalQuestions, o
         
         {/* Animerende Trofé */}
         <div className="mb-6 relative animate-bounce">
-            <div className="absolute inset-0 bg-yellow-500 rounded-full blur-xl opacity-40 animate-pulse"></div>
-            <div className="relative p-6 bg-gradient-to-br from-yellow-300 to-orange-500 rounded-full shadow-[0_0_40px_rgba(245,158,11,0.5)] border-4 border-white text-6xl md:text-8xl flex items-center justify-center w-24 h-24 md:w-32 md:h-32">
-              🐰
+            <div className={`absolute inset-0 rounded-full blur-xl opacity-40 animate-pulse ${isChick ? 'bg-red-500' : 'bg-yellow-500'}`}></div>
+            <div className={`relative p-6 rounded-full border-4 border-white flex items-center justify-center w-[115px] h-[115px] md:w-[154px] md:h-[154px] text-[72px] md:text-[115px] ${isChick ? 'bg-gradient-to-br from-red-400 to-red-600 shadow-[0_0_40px_rgba(239,68,68,0.5)]' : 'bg-gradient-to-br from-yellow-300 to-orange-500 shadow-[0_0_40px_rgba(245,158,11,0.5)]'}`}>
+              {isChick ? '🐥' : '🐰'}
             </div>
         </div>
         

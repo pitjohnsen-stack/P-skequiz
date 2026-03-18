@@ -10,6 +10,7 @@ const App: React.FC = () => {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [bonusAnswer, setBonusAnswer] = useState<string>("");
 
   // Load questions when entering Loading state
   useEffect(() => {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
   const handleStart = () => {
     setScore(0);
     setCurrentQuestionIndex(0);
+    setBonusAnswer("");
     setGameState(GameState.LOADING);
   };
 
@@ -41,6 +43,10 @@ const App: React.FC = () => {
 
     if (isCorrect) {
       setScore((prev) => prev + 1);
+    }
+
+    if (currentQuestionIndex === questions.length - 1) {
+      setBonusAnswer(currentQ.options[selectedIndex]);
     }
 
     if (currentQuestionIndex < questions.length - 1) {
@@ -90,6 +96,7 @@ const App: React.FC = () => {
               score={score} 
               totalQuestions={questions.length} 
               onRestart={handleStart} 
+              bonusAnswer={bonusAnswer}
             />
           )}
           
